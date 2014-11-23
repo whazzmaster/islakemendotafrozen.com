@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"errors"
 	"encoding/json"
 	"github.com/boltdb/bolt"
 	"github.com/revel/revel"
@@ -18,14 +19,26 @@ func (c LakeStatus) Show(name string) revel.Result {
 	return c.RenderJson(lake)
 }
 
+
 func (c LakeStatus) CanUpdate() bool {
-	auth_required := revel.Config.BoolDefault("auth_required", true)
-	if auth_required {
-		// TODO check headers for params
-		return false
+	authRequired := revel.Config.BoolDefault("auth.required", true)
+	authorized := false
+
+	if authRequired {
+		correctUsername, _ := revel.Config.String("auth.user")
+		correctPassword, _ := revel.Config.String("auth.password")
+
+		suppliedUsername := c.Request.Header.Get("X-Authorization-User")
+		suppliedPassword := c.Request.Header.Get("X-Authorization-Password")
+
+		if correctUsername == suppliedUsername && correctPassword == suppliedPassword {
+			authorized = true
+		}
 	} else {
-		return true
+		authorized = true
 	}
+
+	return authorized
 }
 
 func (c LakeStatus) Create(name string) revel.Result {
@@ -60,5 +73,6 @@ func (c LakeStatus) Create(name string) revel.Result {
 	}
 
 	c.Response.Status = http.StatusUnauthorized
-	return c.RenderText("")
+	c.Response.Out.Header().Set("WWW-Authenticate", `Basic realm="revel"`)
+	return c.RenderError(errors.New("401: Not authorized"))
 }
