@@ -1,0 +1,18 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+{{with .mendota}}
+  <header class="{{.Season}}">
+    Is Lake Mendota Frozen?
+  </header>
+
+  <section class="{{.Season}}">
+    <h1 {{if .IsFrozen}}class="frozen"{{end}}>{{.Frozen}}</h1>
+  </section>
+
+  <footer class="{{.Season}}">
+    &nbsp;
+  </footer>
+{{end}}
+
+{{template "footer.html" .}}
