@@ -1,8 +1,80 @@
 body {
-	font-family: 'Droid Sans', sans-serif;
+  font-family: 'Droid Sans', sans-serif;
+  margin: 0;
 }
 
-h1 {
-	text-align: center;
-	font-size: 72pt;
+header {
+  background-color: #C9D8F2;
+}
+
+section h1 {
+  text-align: center;
+  font-size: 72pt;
+  margin: 0;
+  padding: 85px 0 0 0;
+}
+
+section h1.frozen {
+  border-bottom: 20px solid #eee;
+}
+
+footer {
+  min-height: 500px;
+  height: 100%;
+  background: rgba(143,201,255,1);
+  background: -moz-linear-gradient(top, rgba(143,201,255,1) 0%, rgba(5,12,20,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(143,201,255,1)), color-stop(100%, rgba(5,12,20,1)));
+  background: -webkit-linear-gradient(top, rgba(143,201,255,1) 0%, rgba(5,12,20,1) 100%);
+  background: -o-linear-gradient(top, rgba(143,201,255,1) 0%, rgba(5,12,20,1) 100%);
+  background: -ms-linear-gradient(top, rgba(143,201,255,1) 0%, rgba(5,12,20,1) 100%);
+  background: linear-gradient(to bottom, rgba(143,201,255,1) 0%, rgba(5,12,20,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc9ff', endColorstr='#050c14', GradientType=0 );
+}
+
+/* Season-specific styles */
+
+header.winter {
+  background-color: #ddd;
+  padding: 15px 0 0 30px;
+}
+
+section.winter {
+  background-color: #ddd;
+  margin: 0;
+}
+
+header.spring {
+
+}
+
+section.spring {
+
+}
+
+footer.spring {
+
+}
+
+header.summer {
+
+}
+
+section.summer {
+
+}
+
+footer.summer {
+
+}
+
+header.fall {
+
+}
+
+section.fall {
+
+}
+
+footer.fall {
+
 }
